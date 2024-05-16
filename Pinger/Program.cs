@@ -6,19 +6,15 @@ PingReply pingReply;
 while (true)
 {
     Console.WriteLine("Type IP:");
-    try
-    {
-        pingReply = ping.Send(Console.ReadLine()!);
+    pingReply = ping.Send(Console.ReadLine()!);
 
-        if (pingReply.Status == IPStatus.Success)
-        {
-            Console.WriteLine($"Ping success: {pingReply.RoundtripTime} ms");
-        }
-        else
-        {
-            Console.WriteLine($"Ping failed: {pingReply.Status}");
-        }
+    if (pingReply.Status == IPStatus.Success)
+    {
+        Console.WriteLine($"Ping success: {pingReply.RoundtripTime} ms");
     }
-    catch (Exception ex) { Console.WriteLine("Wrong IP"); }
+    else
+    {
+        Console.WriteLine($"Ping failed: {pingReply.Status}");
+    }
     System.Threading.Thread.Sleep(1000);
 }

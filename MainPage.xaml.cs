@@ -28,9 +28,30 @@ namespace Pinger
                             if (pingReply.Status == IPStatus.Success)
                             {
                                 pingView.Text = $"{pingReply.RoundtripTime} ms";
+                                string newImageSource;
+                                if (pingReply.RoundtripTime < 250)
+                                {
+                                    newImageSource = "green.png";
+                                }
+                                else if (pingReply.RoundtripTime < 450)
+                                {
+                                    newImageSource = "orange.png";
+                                }
+                                else
+                                {
+                                    newImageSource = "red.png";
+                                }
+                                if (pingUI.Source.ToString() != $"File: {newImageSource}")
+                                {
+                                    pingUI.Source = newImageSource;
+                                }
                             }
                             else
                             {
+                                if (pingUI.Source.ToString() != "File: normal.png")
+                                {
+                                    pingUI.Source = "normal.png";
+                                }
                                 pingView.Text = "No connection";
                             }
                         });
@@ -39,7 +60,12 @@ namespace Pinger
                     {
                         MainThread.BeginInvokeOnMainThread(() =>
                         {
-                            pingView.Text = "Wrong IP";
+
+                            if (pingUI.Source.ToString() != "File: normal.png")
+                            {
+                                pingUI.Source = "normal.png";
+                            }
+                            pingView.Text = "No connection";
                         });
                     }
                 }

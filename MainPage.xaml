@@ -8,8 +8,13 @@
             Padding="30,0"
             Spacing="25 ">
             <Label
+                Text="Hamza Baghdadi" 
+                SemanticProperties.HeadingLevel="Level1"
+                FontFamily="Cascadia Code" Padding="10"
+                FontSize="Small" HorizontalTextAlignment="End"></Label>
+            <Image x:Name="pingUI" Source="normal.png" MaximumWidthRequest="200" ></Image>
+            <Label
                 x:Name="pingView"
-                Margin="100"
                 Text="-- ms"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" FontFamily="Cascadia Code">
